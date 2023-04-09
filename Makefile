@@ -1,9 +1,10 @@
 NAME = philo
-CFLAGS = -pthread -Wall -Wextra -g3
+CFLAGS = -pthread -Wall -Wextra -Werror -g3
 
 SRCS = philo.c \
 	philo_utils.c \
-	error.c
+	error.c \
+	threads.c
 
 OBJS = $(SRCS:%.c=%.o)
 
