@@ -18,7 +18,7 @@ void	mutexes_init(t_data *data)
 void	destroy_mutexes(t_data *data)
 {
 	int	i;
-	
+
 	if (pthread_mutex_destroy(&data->printf_mutex) != 0)
 		printf("Failed to destroy printf mutex.\n");
 	i = 0;
