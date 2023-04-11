@@ -59,7 +59,8 @@ void	sleep_time(t_philo *philo)
 	if (get_current_time(philo->data) - philo->time_since_last_meal
 		+ philo->data->time_to_sleep > philo->data->time_to_die)
 	{
-		usleep(philo->data->time_to_die * 1000);
+		usleep((philo->data->time_to_die - philo->data->time_to_eat) * 1000);
+		// if (!check_if_died(philo))
 		print_state(philo, "died");
 		philo->data->first_death = 1;
 	}
@@ -75,6 +76,13 @@ void	*dinner(void *philo)
 	t_philo	*tmp;
 
 	tmp = (t_philo *)philo;
+	if (tmp->data->num_philo == 1)
+	{
+		usleep(tmp->data->time_to_die * 1000);
+		print_state(tmp, "died");
+		free(philo);
+		return (NULL);
+	}
 	while ((!check_if_died(philo) && tmp->num_meals < tmp->data->num_times_to_eat)
 		|| (!check_if_died(philo) && tmp->data->num_times_to_eat == -1))
 	{

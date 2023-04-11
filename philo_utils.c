@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:05:36 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/06 16:39:07 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:01:21 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	get_philo_info(t_data *data, t_philo **philo, int i)
 	(*philo) = (t_philo *)malloc(sizeof(t_philo));
 	(*philo)->data = data;
 	(*philo)->id = i + 1;
-	(*philo)->time_since_last_meal = 0;
+	(*philo)->time_since_last_meal = (*philo)->data->start_time;
 	(*philo)->num_meals = 0;
 	(*philo)->is_dead = 0;
 	(*philo)->left_fork = &data->forks[i];

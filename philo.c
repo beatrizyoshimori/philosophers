@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:47:51 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/06 20:39:56 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:51:40 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,6 @@ int	main(int argc, char *argv[])
 	mutexes_init(data);
 	create_thread(data);
 	destroy_mutexes(data);
+	free(data->forks);
+	free(data);
 }
