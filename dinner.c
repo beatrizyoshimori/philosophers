@@ -38,15 +38,18 @@ static void	eat(t_philo **philo)
 	if (!check_if_died(*philo))
 	{
 		print_state(*philo, "is eating");
-		(*philo)->time_since_last_meal = get_current_time((*philo)->data);
 		if ((*philo)->data->time_to_die < (*philo)->data->time_to_eat)
+		//|| (get_current_time((*philo)->data) - (*philo)->time_since_last_meal + (*philo)->data->time_to_eat > (*philo)->data->time_to_die))
 		{
 			usleep((*philo)->data->time_to_die * 1000);
 			print_state(*philo, "died");
 			(*philo)->data->first_death = 1;
 		}
 		else
-			usleep((*philo)->data->time_to_sleep * 1000);
+		{
+			(*philo)->time_since_last_meal = get_current_time((*philo)->data);
+			usleep((*philo)->data->time_to_eat * 1000);
+		}
 	}
 	pthread_mutex_unlock((*philo)->left_fork);
 	pthread_mutex_unlock((*philo)->right_fork);
@@ -66,7 +69,7 @@ void	sleep_time(t_philo *philo)
 	}
 	else
 	{
-		usleep(philo->data->time_to_sleep);
+		usleep(philo->data->time_to_sleep * 1000);
 		print_state(philo, "is thinking");
 	}
 }
