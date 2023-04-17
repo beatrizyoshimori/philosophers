@@ -12,24 +12,14 @@
 
 #include "philo.h"
 
-void	create_thread(t_data *data)
+static void	check_args(int argc)
 {
-	pthread_t	th[data->num_philo];
-	int			i;
-	t_philo		*philo;
-
-	i = 0;
-	while (i < data->num_philo)
+	if (argc < 5 || argc > 6)
 	{
-		get_philo_info(data, &philo, i);
-		if (pthread_create(&th[i++], NULL, &dinner, philo) != 0)
-			printf("Failed to create thread.\n");
-	}
-	i = 0;
-	while (i < data->num_philo)
-	{
-		if (pthread_join(th[i++], NULL) != 0)
-			printf("Failed to join thread.\n");
+		printf("Wrong arguments!\nUsage:\n./philo number_of_philosophers");
+		printf(" time_to_die time_to_eat time_to_sleep ");
+		printf("[number_of_times_each_philosopher_must_eat]\n");
+		exit(1);
 	}
 }
 

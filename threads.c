@@ -1,12 +1,35 @@
 
 #include "philo.h"
 
+void	create_thread(t_data *data)
+{
+	pthread_t	th[data->num_philo];
+	int			i;
+	t_philo		*philo;
+
+	i = 0;
+	while (i < data->num_philo)
+	{
+		get_philo_info(data, &philo, i);
+		if (pthread_create(&th[i++], NULL, &dinner, philo) != 0)
+			printf("Failed to create thread.\n");
+	}
+	i = 0;
+	while (i < data->num_philo)
+	{
+		if (pthread_join(th[i++], NULL) != 0)
+			printf("Failed to join thread.\n");
+	}
+}
+
 void	mutexes_init(t_data *data)
 {
 	int	i;
 
 	if (pthread_mutex_init(&data->printf_mutex, NULL) != 0)
 		printf("Failed to init printf mutex.\n");
+	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
+		printf("Failed to init death mutex\n");
 	i = 0;
 	while (i < data->num_philo)
 	{
@@ -21,6 +44,8 @@ void	destroy_mutexes(t_data *data)
 
 	if (pthread_mutex_destroy(&data->printf_mutex) != 0)
 		printf("Failed to destroy printf mutex.\n");
+	if (pthread_mutex_destroy(&data->death_mutex) != 0)
+		printf("Failed to destroy death mutex.\n");
 	i = 0;
 	while (i < data->num_philo)
 	{

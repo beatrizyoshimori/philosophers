@@ -3,9 +3,9 @@ CFLAGS = -pthread -Wall -Wextra -Werror -g3
 
 SRCS = philo.c \
 	philo_utils.c \
-	error.c \
 	threads.c \
-	dinner.c
+	dinner.c \
+	data_init.c
 
 OBJS = $(SRCS:%.c=%.o)
 

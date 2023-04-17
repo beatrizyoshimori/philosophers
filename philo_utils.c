@@ -15,8 +15,19 @@
 void	print_state(t_philo *philo, char *state)
 {
 	pthread_mutex_lock(&philo->data->printf_mutex);
-	printf("%ld %d %s\n", get_current_time(philo->data), philo->id, state);
+	if (!check_if_died(philo))
+		printf("%ld %d %s\n", get_current_time(philo->data), philo->id, state);
 	pthread_mutex_unlock(&philo->data->printf_mutex);
+}
+
+int	check_if_died(t_philo *philo)
+{
+	if (philo->data->first_death)
+		return (1);
+	if (get_current_time(philo->data) - philo->time_since_last_meal
+		< philo->data->time_to_die)
+		return (0);
+	return (1);
 }
 
 time_t	get_current_time(t_data *data)
@@ -27,40 +38,6 @@ time_t	get_current_time(t_data *data)
 	gettimeofday(&current_time, NULL);
 	time_ms = (current_time.tv_sec * 1000 + current_time.tv_usec / 1000) - data->start_time;
 	return (time_ms);
-}
-
-void	get_philo_info(t_data *data, t_philo **philo, int i)
-{
-	(*philo) = (t_philo *)malloc(sizeof(t_philo));
-	(*philo)->data = data;
-	(*philo)->id = i + 1;
-	(*philo)->time_since_last_meal = 0;
-	(*philo)->num_meals = 0;
-	(*philo)->is_dead = 0;
-	(*philo)->left_fork = &data->forks[i];
-	if (i == data->num_philo - 1)
-		(*philo)->right_fork = &data->forks[0];
-	else
-		(*philo)->right_fork = &data->forks[i + 1];
-}
-
-void	get_data(int argc, char *argv[], t_data **data)
-{
-	struct timeval	current_time;
-
-	(*data) = (t_data *)malloc(sizeof(t_data));
-	(*data)->num_philo = ft_atoi(argv[1]);
-	(*data)->time_to_die = ft_atoi(argv[2]);
-	(*data)->time_to_eat = ft_atoi(argv[3]);
-	(*data)->time_to_sleep = ft_atoi(argv[4]);
-	if (argc == 6)
-		(*data)->num_times_to_eat = ft_atoi(argv[5]);
-	else
-		(*data)->num_times_to_eat = -1;
-	(*data)->first_death = 0;
-	gettimeofday(&current_time, NULL);
-	(*data)->start_time = current_time.tv_sec * 1000 + current_time.tv_usec / 1000;
-	(*data)->forks = malloc((*data)->num_philo * sizeof(pthread_mutex_t));
 }
 
 int	ft_atoi(const char *nptr)
