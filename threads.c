@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/17 18:27:41 by byoshimo          #+#    #+#             */
+/*   Updated: 2023/04/17 18:37:30 by byoshimo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "philo.h"
 
 void	create_thread(t_data *data)
 {
-	pthread_t	th[data->num_philo];
+	pthread_t	*th;
 	int			i;
 	t_philo		*philo;
 
+	th = malloc(data->num_philo * sizeof(pthread_t));
 	i = 0;
 	while (i < data->num_philo)
 	{
@@ -20,6 +32,7 @@ void	create_thread(t_data *data)
 		if (pthread_join(th[i++], NULL) != 0)
 			printf("Failed to join thread.\n");
 	}
+	free(th);
 }
 
 void	mutexes_init(t_data *data)

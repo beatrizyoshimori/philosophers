@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:05:36 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/11 21:14:25 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:38:47 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ time_t	get_current_time(t_data *data)
 	time_t			time_ms;
 
 	gettimeofday(&current_time, NULL);
-	time_ms = (current_time.tv_sec * 1000 + current_time.tv_usec / 1000) - data->start_time;
+	time_ms = (current_time.tv_sec * 1000 + current_time.tv_usec / 1000)
+		- data->start_time;
 	return (time_ms);
 }
 
