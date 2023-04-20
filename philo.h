@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:48:10 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/06 16:40:28 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/19 21:45:29 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	printf_mutex;
 	pthread_mutex_t	death_mutex;
+	pthread_mutex_t meal_mutex;
 }	t_data;
 
 typedef struct s_philo

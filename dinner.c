@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:41:18 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/17 21:51:19 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/19 21:54:36 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	get_forks(t_philo **philo)
 static void	eat(t_philo **philo)
 {
 	get_forks(philo);
+	// pthread_mutex_lock(&(*philo)->data->meal_mutex);
 	print_state(*philo, "is eating");
 	if ((*philo)->data->time_to_die < (*philo)->data->time_to_eat) 
 	// || (get_current_time((*philo)->data) - (*philo)->time_since_last_meal + (*philo)->data->time_to_eat > (*philo)->data->time_to_die))
@@ -54,9 +55,10 @@ static void	eat(t_philo **philo)
 		(*philo)->time_since_last_meal = get_current_time((*philo)->data);
 		usleep((*philo)->data->time_to_eat * 1000);
 	}
+	(*philo)->num_meals++;
+	// pthread_mutex_unlock(&(*philo)->data->meal_mutex);
 	pthread_mutex_unlock((*philo)->left_fork);
 	pthread_mutex_unlock((*philo)->right_fork);
-	(*philo)->num_meals++;
 }
 
 static void	sleep_time(t_philo *philo)

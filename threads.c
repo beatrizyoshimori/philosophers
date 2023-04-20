@@ -6,18 +6,32 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:27:41 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/17 18:37:30 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/19 21:41:49 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// void	*monitoring(void *data)
+// {
+// 	t_data	*tmp;
+
+// 	tmp = (t_data *)data;
+// 	while (1)
+// 	{
+		
+// 	}
+// }
 
 void	create_thread(t_data *data)
 {
 	pthread_t	*th;
 	int			i;
 	t_philo		*philo;
+	// pthread_t	monitor;
 
+	// if (pthread_create(&monitor, NULL, &monitoring, data) != 0)
+	// 	printf("Failed to create monitor thread.\n");
 	th = malloc(data->num_philo * sizeof(pthread_t));
 	i = 0;
 	while (i < data->num_philo)
