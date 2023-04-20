@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:05:36 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/19 20:32:59 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/20 19:18:29 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,21 @@ void	print_state(t_philo *philo, char *state)
 	pthread_mutex_unlock(&philo->data->printf_mutex);
 }
 
+int	get_first_death(t_philo *philo)
+{
+	int	death;
+
+	death = 0;
+	pthread_mutex_lock(&philo->data->getter_mutex);
+	// if (philo->data->first_death)
+	death = philo->data->first_death;
+	pthread_mutex_unlock(&philo->data->getter_mutex);
+	return (death);
+}
+
 int	check_if_died(t_philo *philo)
 {
-	if (philo->data->first_death)
+	if (get_first_death(philo))
 		return (1);
 	if (get_current_time(philo->data) - philo->time_since_last_meal
 		< philo->data->time_to_die)

@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:41:18 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/19 21:54:36 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/20 19:22:08 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 static void	philo_died(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->death_mutex);
-	if (philo->data->first_death == 0)
+	if (!get_first_death(philo))
+	{
+		pthread_mutex_lock(&philo->data->printf_mutex);
 		printf("%ld %d died\n", get_current_time(philo->data), philo->id);
+		pthread_mutex_unlock(&philo->data->printf_mutex);
+	}
 	philo->data->first_death = 1;
 	pthread_mutex_unlock(&philo->data->death_mutex);
 }
@@ -44,8 +48,8 @@ static void	eat(t_philo **philo)
 	get_forks(philo);
 	// pthread_mutex_lock(&(*philo)->data->meal_mutex);
 	print_state(*philo, "is eating");
-	if ((*philo)->data->time_to_die < (*philo)->data->time_to_eat) 
-	// || (get_current_time((*philo)->data) - (*philo)->time_since_last_meal + (*philo)->data->time_to_eat > (*philo)->data->time_to_die))
+	if (((*philo)->data->time_to_die < (*philo)->data->time_to_eat) 
+		|| (get_current_time((*philo)->data) - (*philo)->time_since_last_meal + (*philo)->data->time_to_eat > (*philo)->data->time_to_die))
 	{
 		usleep((*philo)->data->time_to_die * 1000);
 		philo_died(*philo);
@@ -82,6 +86,8 @@ void	*dinner(void *philo)
 	t_philo	*tmp;
 
 	tmp = (t_philo *)philo;
+	if (tmp->id % 2 == 0)
+		usleep(5);
 	if (tmp->data->num_philo == 1)
 	{
 		pthread_mutex_lock(tmp->right_fork);

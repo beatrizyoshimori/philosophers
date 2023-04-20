@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:27:41 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/19 21:41:49 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:47:36 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	mutexes_init(t_data *data)
 		printf("Failed to init printf mutex.\n");
 	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
 		printf("Failed to init death mutex\n");
+	if (pthread_mutex_init(&data->getter_mutex, NULL) != 0)
+		printf("Failed to init getter mutex\n");
 	i = 0;
 	while (i < data->num_philo)
 	{
@@ -73,6 +75,8 @@ void	destroy_mutexes(t_data *data)
 		printf("Failed to destroy printf mutex.\n");
 	if (pthread_mutex_destroy(&data->death_mutex) != 0)
 		printf("Failed to destroy death mutex.\n");
+	if (pthread_mutex_destroy(&data->getter_mutex) != 0)
+		printf("Failed to destroy getter mutex.\n");
 	i = 0;
 	while (i < data->num_philo)
 	{

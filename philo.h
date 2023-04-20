@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:48:10 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/19 21:45:29 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:40:41 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_data
 	pthread_mutex_t	printf_mutex;
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t meal_mutex;
+	pthread_mutex_t	getter_mutex;
 }	t_data;
 
 typedef struct s_philo
@@ -52,6 +53,7 @@ void	destroy_mutexes(t_data *data);
 
 void	*dinner(void *philo);
 
+int	get_first_death(t_philo *philo);
 void	print_state(t_philo *philo, char *state);
 int		check_if_died(t_philo *philo);
 time_t	get_current_time(t_data *data);
