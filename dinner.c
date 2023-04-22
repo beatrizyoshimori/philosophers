@@ -6,11 +6,20 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:41:18 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/20 19:22:08 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/22 19:13:58 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// void	msleep(int time, t_data *data)
+// {
+// 	long	start_time;
+
+// 	start_time = get_current_time();
+// 	while ((get_current_time(data) - start_time) < (long)time)
+// 		usleep(10);
+// }
 
 static void	philo_died(t_philo *philo)
 {
@@ -48,8 +57,9 @@ static void	eat(t_philo **philo)
 	get_forks(philo);
 	// pthread_mutex_lock(&(*philo)->data->meal_mutex);
 	print_state(*philo, "is eating");
-	if (((*philo)->data->time_to_die < (*philo)->data->time_to_eat) 
-		|| (get_current_time((*philo)->data) - (*philo)->time_since_last_meal + (*philo)->data->time_to_eat > (*philo)->data->time_to_die))
+	// int time = get_current_time((*philo)->data) - (*philo)->time_since_last_meal + (*philo)->data->time_to_eat;
+	if ((*philo)->data->time_to_die < (*philo)->data->time_to_eat) 
+		// || (time > (*philo)->data->time_to_die))
 	{
 		usleep((*philo)->data->time_to_die * 1000);
 		philo_died(*philo);

@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:39:30 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/20 19:06:06 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:43:45 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	get_philo_info(t_data *data, t_philo **philo, int i)
 	(*philo)->num_meals = 0;
 	(*philo)->is_dead = 0;
 	(*philo)->left_fork = &data->forks[i];
-	(*philo)->right_fork = &data->forks[(i + 1) % data->num_philo];
-	// if (i == data->num_philo - 1)
-	// 	(*philo)->right_fork = &data->forks[0];
-	// else
-	// 	(*philo)->right_fork = &data->forks[i + 1];
+	// (*philo)->right_fork = &data->forks[(i + 1) % data->num_philo];
+	if (i == data->num_philo - 1)
+		(*philo)->right_fork = &data->forks[0];
+	else
+		(*philo)->right_fork = &data->forks[i + 1];
 }
 
 void	get_data(int argc, char *argv[], t_data **data)

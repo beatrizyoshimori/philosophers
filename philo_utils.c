@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:05:36 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/20 19:18:29 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/22 19:17:02 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	print_state(t_philo *philo, char *state)
 {
 	pthread_mutex_lock(&philo->data->printf_mutex);
 	if (!check_if_died(philo))
+	// if (!get_first_death(philo))
 		printf("%ld %d %s\n", get_current_time(philo->data), philo->id, state);
 	pthread_mutex_unlock(&philo->data->printf_mutex);
 }
@@ -26,7 +27,6 @@ int	get_first_death(t_philo *philo)
 
 	death = 0;
 	pthread_mutex_lock(&philo->data->getter_mutex);
-	// if (philo->data->first_death)
 	death = philo->data->first_death;
 	pthread_mutex_unlock(&philo->data->getter_mutex);
 	return (death);

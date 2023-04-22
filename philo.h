@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:48:10 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/20 18:40:41 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/22 19:11:44 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	create_thread(t_data *data);
 void	mutexes_init(t_data *data);
 void	destroy_mutexes(t_data *data);
 
+void	philo_died(t_philo *philo);
 void	*dinner(void *philo);
 
 int	get_first_death(t_philo *philo);
