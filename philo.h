@@ -26,13 +26,13 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_times_to_eat;
-	int				first_death;
+	int				dinner_is_over;
 	time_t			start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	printf_mutex;
-	pthread_mutex_t	death_mutex;
 	pthread_mutex_t meal_mutex;
-	pthread_mutex_t	getter_mutex;
+	pthread_mutex_t	dinner_mutex;
+	pthread_mutex_t num_meals_mutex;
 }	t_data;
 
 typedef struct s_philo
@@ -41,26 +41,32 @@ typedef struct s_philo
 	int				id;
 	int				num_meals;
 	time_t			time_since_last_meal;
-	int				is_dead;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-
 }	t_philo;
 
-void	create_thread(t_data *data);
+int		get_meals(t_philo *philo);
+void	set_meals(t_philo *philo);
+int		get_last_meal(t_philo *philo);
+void	set_last_meal(t_philo *philo);
+
+void	*dinner(void *philo);
+
+int		dinner_is_over(t_philo *philo);
+void	print_state(t_philo *philo, char *state);
+int		ft_atoi(const char *nptr);
+
+long	timestamp(void);
+long	timenow(long firststamp);
+void	msleep(int time_in_ms);
+
+void	*monitoring(void *ptr);
+
+void	create_thread(t_philo *philo);
 void	mutexes_init(t_data *data);
 void	destroy_mutexes(t_data *data);
 
-void	philo_died(t_philo *philo);
-void	*dinner(void *philo);
-
-int	get_first_death(t_philo *philo);
-void	print_state(t_philo *philo, char *state);
-int		check_if_died(t_philo *philo);
-time_t	get_current_time(t_data *data);
-int		ft_atoi(const char *nptr);
-
-void	get_philo_info(t_data *data, t_philo **philo, int i);
+void	init_philos(t_data *data, t_philo **philo);
 void	get_data(int argc, char *argv[], t_data **data);
 
 #endif

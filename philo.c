@@ -26,12 +26,15 @@ static void	check_args(int argc)
 int	main(int argc, char *argv[])
 {
 	t_data		*data;
+	t_philo		*philo;
 
 	check_args(argc);
 	get_data(argc, argv, &data);
+	init_philos(data, &philo);
 	mutexes_init(data);
-	create_thread(data);
+	create_thread(philo);
 	destroy_mutexes(data);
 	free(data->forks);
 	free(data);
+	free(philo);
 }

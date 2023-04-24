@@ -5,7 +5,10 @@ SRCS = philo.c \
 	philo_utils.c \
 	threads.c \
 	dinner.c \
-	data_init.c
+	data_init.c \
+	dinner_utils.c \
+	monitor.c \
+	time_utils.c
 
 OBJS = $(SRCS:%.c=%.o)
 
