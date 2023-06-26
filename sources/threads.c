@@ -6,11 +6,11 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:27:41 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/22 18:42:53 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:45:27 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 void	create_thread(t_philo *philo)
 {

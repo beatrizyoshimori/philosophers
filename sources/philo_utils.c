@@ -6,11 +6,11 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:05:36 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/22 19:17:02 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:45:21 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 int	dinner_is_over(t_philo *philo)
 {

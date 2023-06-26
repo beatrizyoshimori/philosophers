@@ -6,11 +6,11 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:47:51 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/19 21:09:34 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:45:24 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 static void	check_args(int argc)
 {

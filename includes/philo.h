@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:48:10 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/22 19:11:44 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:34:42 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ typedef struct s_data
 	time_t			start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	printf_mutex;
-	pthread_mutex_t meal_mutex;
+	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	dinner_mutex;
-	pthread_mutex_t num_meals_mutex;
+	pthread_mutex_t	num_meals_mutex;
 }	t_data;
 
 typedef struct s_philo

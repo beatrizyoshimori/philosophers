@@ -6,11 +6,11 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:39:30 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/22 18:43:45 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:45:11 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 void	init_philos(t_data *data, t_philo **philo)
 {
