@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:30:03 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/26 20:44:23 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:58:01 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,6 @@ long	timestamp(void)
 long	timenow(long firststamp)
 {
 	return (timestamp() - firststamp);
-}
-
-void	msleep(int time_in_ms)
-{
-	long	start_time;
-
-	start_time = timestamp();
-	while ((timestamp() - start_time) < (long)time_in_ms)
-		usleep(10);
 }
 
 // void	msleep(int time, t_data *data)
