@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:48:10 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/04/24 18:34:42 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:37:07 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int		ft_atoi(const char *nptr);
 
 long	timestamp(void);
 long	timenow(long firststamp);
-void	msleep(int time_in_ms);
 
 void	*monitoring(void *ptr);
 
