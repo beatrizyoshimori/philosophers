@@ -6,13 +6,18 @@ SOURCES_PATH	=		sources_bonus
 
 OBJECTS_PATH	=		objects_bonus
 
-SOURCES			=		philo_bonus.c
+SOURCES			=		data_init_bonus.c \
+						dinner_bonus.c \
+						dinner_utils_bonus.c \
+						philo_bonus.c \
+						philo_utils_bonus.c \
+						time_utils_bonus.c
 
 OBJECT			=		$(addprefix $(OBJECTS_PATH)/,	$(SOURCES:.c=.o))
 
 CC				=		cc
 
-C_FLAGS			=		-Wall -Wextra -Werror -g3 -I$(HEADER_PATH)
+C_FLAGS			=		-pthread -Wall -Wextra -Werror -g3 -I$(HEADER_PATH)
 
 all:					$(NAME)
 
