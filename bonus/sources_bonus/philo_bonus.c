@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:02:41 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/26 21:19:56 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:32:36 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,23 @@ static void	check_args(int argc)
 
 void	start_processes(t_philo *philo)
 {
-	int	i;
+	int		i;
 
+	philo->data->forks = sem_open("Forks", O_CREAT, O_RDWR, philo->data->num_philo);
 	i = 0;
 	while (i < philo->data->num_philo)
 	{
 		philo[i].pid = fork();
 		if (philo[i].pid == 0)
-		{
-
-		}
+			dinner(&philo[i]);
+		i++;
+	}
+	sem_unlink("Forks");
+	sem_close(philo->data->forks);
+	i = 0;
+	while (i < philo->data->num_philo)
+	{
+		waitpid(philo[i].pid, NULL, 0);
 		i++;
 	}
 }
@@ -48,4 +55,6 @@ int	main(int argc, char *argv[])
 	get_data(argc, argv, &data);
 	init_philos(data, &philo);
 	start_processes(philo);
+	free(data);
+	free(philo);
 }
