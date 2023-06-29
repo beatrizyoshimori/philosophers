@@ -6,11 +6,11 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:56:13 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/26 21:16:29 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:08:45 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.c"
+#include "philo_bonus.h"
 
 void	init_philos(t_data *data, t_philo **philo)
 {
@@ -53,5 +53,5 @@ void	get_data(int argc, char *argv[], t_data **data)
 		(*data)->num_times_to_eat = -1;
 	(*data)->dinner_is_over = 0;
 	(*data)->start_time = timestamp();
-	// (*data)->forks = malloc((*data)->num_philo * sizeof(pthread_mutex_t));
+	// (*data)->forks = malloc(sizeof(sem_t));
 }
