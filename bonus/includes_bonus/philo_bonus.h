@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:02:58 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/01 18:27:52 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/01 19:05:31 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,6 @@ typedef struct s_philo
 	int				num_meals;
 	time_t			time_since_last_meal;
 }	t_philo;
-
-int		get_meals(t_philo *philo);
-void	set_meals(t_philo *philo);
-int		get_last_meal(t_philo *philo);
-void	set_last_meal(t_philo *philo);
 
 void	*dinner(t_philo *philo);
 
