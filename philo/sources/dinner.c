@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:41:18 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/26 20:44:05 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/01 15:24:56 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	eat(t_philo **philo)
 	print_state(*philo, "is eating");
 	set_last_meal(*philo);
 	usleep((*philo)->data->time_to_eat * 1000);
-	// msleep((*philo)->data->time_to_eat);
 	pthread_mutex_unlock((*philo)->left_fork);
 	pthread_mutex_unlock((*philo)->right_fork);
 	set_meals(*philo);
@@ -52,7 +51,6 @@ static void	sleep_and_think(t_philo *philo)
 {
 	print_state(philo, "is sleeping");
 	usleep(philo->data->time_to_sleep * 1000);
-	// msleep(philo->data->time_to_sleep);
 	print_state(philo, "is thinking");
 	usleep(500);
 }
