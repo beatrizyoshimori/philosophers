@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:27:41 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/26 20:44:19 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/01 14:29:56 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	create_thread(t_philo *philo)
 {
-	pthread_t	*th;
 	int			i;
 	pthread_t	monitor;
+	pthread_t	*th;
 
 	th = malloc(philo->data->num_philo * sizeof(pthread_t));
 	i = 0;
