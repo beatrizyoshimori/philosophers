@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:56:13 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/28 21:08:45 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/01 18:14:52 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ void	get_data(int argc, char *argv[], t_data **data)
 		(*data)->num_times_to_eat = -1;
 	(*data)->dinner_is_over = 0;
 	(*data)->start_time = timestamp();
-	// (*data)->forks = malloc(sizeof(sem_t));
+	(*data)->pid = malloc((*data)->num_philo * sizeof(pid_t));
 }
