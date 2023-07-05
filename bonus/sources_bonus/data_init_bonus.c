@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:56:13 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/01 18:14:52 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:43:15 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_philos(t_data *data, t_philo **philo)
 	if (!(*philo))
 	{
 		printf("Failed to alloc philosophers.\n");
-		// free(data->forks);
+		free(data->pid);
 		free(data);
 		exit(1);
 	}
@@ -54,4 +54,10 @@ void	get_data(int argc, char *argv[], t_data **data)
 	(*data)->dinner_is_over = 0;
 	(*data)->start_time = timestamp();
 	(*data)->pid = malloc((*data)->num_philo * sizeof(pid_t));
+	if (!(*data)->pid)
+	{
+		printf("Failed to alloc pid.\n");
+		free(*data);
+		exit(1);
+	}
 }
