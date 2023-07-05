@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:02:58 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/01 19:05:31 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:52:24 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_philo
 
 void	*dinner(t_philo *philo);
 
-int		dinner_is_over(t_philo *philo);
+void	free_all(t_philo *philo);
 void	print_state(t_philo *philo, char *state);
 int		ft_atoi(const char *nptr);
 

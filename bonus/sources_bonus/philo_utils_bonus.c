@@ -6,23 +6,22 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:00:06 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/01 18:16:56 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:44:07 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-// int	dinner_is_over(t_philo *philo)
-// {
-// 	int	dinner_is_over;
-
-// 	// pthread_mutex_lock(&philo->data->dinner_mutex);
-// 	dinner_is_over = 0;
-// 	if (philo->data->dinner_is_over)
-// 		dinner_is_over = philo->data->dinner_is_over;
-// 	// pthread_mutex_unlock(&philo->data->dinner_mutex);
-// 	return (dinner_is_over);
-// }
+void	free_all(t_philo *philo)
+{
+	sem_close(philo->data->forks);
+	sem_close(philo->data->print_sem);
+	sem_unlink("forks_sem");
+	sem_unlink("print_sem");
+	free(philo->data->pid);
+	free(philo->data);
+	free(philo);
+}
 
 void	print_state(t_philo *philo, char *state)
 {
