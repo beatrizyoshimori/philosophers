@@ -6,33 +6,34 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:56:13 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/04 21:43:15 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:57:01 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	init_philos(t_data *data, t_philo **philo)
+void	init_philos(t_data **data, t_philo **philo)
 {
 	int	i;
 
-	(*philo) = (t_philo *)malloc(sizeof(t_philo) * data->num_philo);
+	(*philo) = (t_philo *)malloc(sizeof(t_philo) * (*data)->num_philo);
 	if (!(*philo))
 	{
 		printf("Failed to alloc philosophers.\n");
-		free(data->pid);
-		free(data);
+		free((*data)->pid);
+		free(*data);
 		exit(1);
 	}
 	i = 0;
-	while (i < data->num_philo)
+	while (i < (*data)->num_philo)
 	{
-		(*philo)[i].data = data;
+		(*philo)[i].data = *data;
 		(*philo)[i].id = i + 1;
 		(*philo)[i].time_since_last_meal = 0;
 		(*philo)[i].num_meals = 0;
 		i++;
 	}
+	(*data)->philos = *philo;
 }
 
 void	get_data(int argc, char *argv[], t_data **data)
