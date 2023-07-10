@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:02:41 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/05 19:51:42 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/10 18:34:37 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,42 +37,42 @@ void	kill_child_processes(t_data *data)
 	}
 }
 
-void	start_processes(t_philo *philo)
+void	start_processes(t_data *data)
 {
-	int		i;
-	int		exit_status;
+	int	i;
+	int	exit_status;
 
-	philo->data->forks = sem_open("forks_sem", O_CREAT,
-			0777, philo->data->num_philo);
-	philo->data->print_sem = sem_open("print_sem", O_CREAT, 0777, 1);
+	data->forks = sem_open("forks_sem", O_CREAT, 0777, data->num_philo);
+	data->print_sem = sem_open("print_sem", O_CREAT, 0777, 1);
 	i = 0;
-	while (i < philo->data->num_philo)
+	while (i < data->num_philo)
 	{
-		philo->data->pid[i] = fork();
-		if (philo->data->pid[i] == 0)
-			dinner(&philo[i]);
+		data->pid[i] = fork();
+		data->curr_philo = i;
+		if (data->pid[i] == 0)
+			dinner(data);
 		i++;
 	}
 	exit_status = 0;
 	i = 0;
-	while (i < philo->data->num_philo && exit_status == 0)
+	while (i < data->num_philo && exit_status == 0)
 	{
 		waitpid(-1, &exit_status, 0);
 		exit_status = WEXITSTATUS(exit_status);
 		i++;
 	}
 	if (exit_status == 1)
-		kill_child_processes(philo->data);
+		kill_child_processes(data);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_data		*data;
-	t_philo		*philo;
+	t_data	*data;
+	t_philo	*philo;
 
 	check_args(argc);
 	get_data(argc, argv, &data);
-	init_philos(data, &philo);
-	start_processes(philo);
-	free_all(philo);
+	init_philos(&data, &philo);
+	start_processes(data);
+	free_all(data);
 }
