@@ -6,99 +6,79 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:55:22 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/05 21:55:58 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/10 18:46:24 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static void	philo_died(t_philo *philo)
-{
-	long	current_time;
-
-	usleep(philo->data->time_to_die * 1000);
-	sem_wait(philo->data->print_sem);
-	current_time = timenow(philo->data->start_time);
-	printf("%ld %d died\n", current_time, philo->id);
-	free_all(philo);
-	exit(1);
-}
-
-void	check_if_died(t_philo *philo, long time)
+void	check_if_died(t_data *data, long time)
 {
 	long	start_time;
-	long	current_time;
+	long	curr_time;
 
 	start_time = timestamp();
 	while (timestamp() - start_time < time)
 	{
 		usleep(10);
-		current_time = timenow(philo->data->start_time);
-		if ((current_time - philo->time_since_last_meal) > philo->data->time_to_die)
+		curr_time = timenow(data->start_time);
+		if ((curr_time - data->philos[data->curr_philo].time_since_last_meal)
+			> data->time_to_die)
 		{
-			sem_wait(philo->data->print_sem);
-			current_time = timenow(philo->data->start_time);
-			printf("%ld %d died\n", current_time, philo->id);
-			free_all(philo);
+			sem_wait(data->print_sem);
+			curr_time = timenow(data->start_time);
+			printf("%ld %d died\n", curr_time,
+				data->philos[data->curr_philo].id);
+			free_all(data);
 			exit(1);
 		}
 	}
 }
 
-static void	eat(t_philo **philo)
+static void	eat(t_data **data)
 {
-	// long	curr_time;
-
-	sem_wait((*philo)->data->forks);
-	sem_wait((*philo)->data->forks);
-	print_state(*philo, "has taken a fork");
-	print_state(*philo, "has taken a fork");
-	print_state(*philo, "is eating");
-	// curr_time = timenow((*philo)->data->start_time);
-	// if (curr_time + (*philo)->data->time_to_eat
-	// 	> (*philo)->data->time_to_die + (*philo)->time_since_last_meal)
-	// 	philo_died(*philo);
-	(*philo)->time_since_last_meal = timenow((*philo)->data->start_time);
-	// usleep((*philo)->data->time_to_eat * 1000);
-	check_if_died(*philo, (*philo)->data->time_to_eat);
-	sem_post((*philo)->data->forks);
-	sem_post((*philo)->data->forks);
-	(*philo)->num_meals++;
+	sem_wait((*data)->forks);
+	sem_wait((*data)->forks);
+	print_state(&(*data)->philos[(*data)->curr_philo], "has taken a fork");
+	print_state(&(*data)->philos[(*data)->curr_philo], "has taken a fork");
+	print_state(&(*data)->philos[(*data)->curr_philo], "is eating");
+	(*data)->philos[(*data)->curr_philo].time_since_last_meal
+		= timenow((*data)->start_time);
+	check_if_died(*data, (*data)->time_to_eat);
+	sem_post((*data)->forks);
+	sem_post((*data)->forks);
+	(*data)->philos[(*data)->curr_philo].num_meals++;
 }
 
-static void	sleep_and_think(t_philo *philo)
+static void	sleep_and_think(t_data *data)
 {
-	// long	curr_time;
-
-	// curr_time = timenow(philo->data->start_time);
-	print_state(philo, "is sleeping");
-	// if (curr_time + philo->data->time_to_sleep
-	// 	> philo->data->time_to_die + philo->time_since_last_meal)
-	// 	philo_died(philo);
-	// usleep(philo->data->time_to_sleep * 1000);
-	check_if_died(philo, philo->data->time_to_sleep);
-	print_state(philo, "is thinking");
+	print_state(&(data->philos[data->curr_philo]), "is sleeping");
+	check_if_died(data, data->time_to_sleep);
+	print_state(&(data->philos[data->curr_philo]), "is thinking");
 	usleep(500);
 }
 
-void	*dinner(t_philo *philo)
+void	*dinner(t_data *data)
 {
-	if (philo->id % 2 == 0)
+	if (data->philos[data->curr_philo].id % 2 == 0)
 		usleep(5000);
-	if (philo->data->num_philo == 1)
+	if (data->num_philo == 1)
 	{
-		sem_wait(philo->data->forks);
-		print_state(philo, "has taken a fork");
-		sem_post(philo->data->forks);
-		philo_died(philo);
+		sem_wait(data->forks);
+		print_state(&(data->philos[data->curr_philo]), "has taken a fork");
+		sem_post(data->forks);
+		usleep(data->time_to_die * 1000);
+		print_state(&(data->philos[data->curr_philo]), "died");
+		free_all(data);
+		exit(1);
 	}
 	while (1)
 	{
-		eat(&philo);
-		if (philo->num_meals == philo->data->num_times_to_eat)
+		eat(&data);
+		if (data->philos[data->curr_philo].num_meals == data->num_times_to_eat)
 			break ;
-		sleep_and_think(philo);
+		sleep_and_think(data);
 	}
-	free_all(philo);
+	free_all(data);
 	exit(0);
 }
