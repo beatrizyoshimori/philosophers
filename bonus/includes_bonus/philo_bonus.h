@@ -56,6 +56,7 @@ int		ft_atoi(const char *nptr);
 long	timestamp(void);
 long	timenow(long firststamp);
 
+void	init_semaphores(t_data *data);
 void	init_philos(t_data **data, t_philo **philo);
 void	get_data(int argc, char *argv[], t_data **data);
 
