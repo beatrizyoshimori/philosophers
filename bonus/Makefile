@@ -20,6 +20,8 @@ C_FLAGS			=		-pthread -Wall -Wextra -Werror -g3 -I$(HEADER_PATH)
 
 all:					$(NAME)
 
+bonus:					all
+
 $(NAME):				$(OBJECTS_PATH) $(OBJECT)
 						$(CC) $(C_FLAGS) $(OBJECT) -o $@
 
