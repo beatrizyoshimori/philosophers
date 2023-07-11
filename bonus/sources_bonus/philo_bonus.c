@@ -42,8 +42,6 @@ void	start_processes(t_data *data)
 	int	i;
 	int	exit_status;
 
-	data->forks = sem_open("forks_sem", O_CREAT, 0777, data->num_philo);
-	data->print_sem = sem_open("print_sem", O_CREAT, 0777, 1);
 	i = 0;
 	while (i < data->num_philo)
 	{
@@ -73,6 +71,7 @@ int	main(int argc, char *argv[])
 	check_args(argc);
 	get_data(argc, argv, &data);
 	init_philos(&data, &philo);
+	init_semaphores(data);
 	start_processes(data);
 	free_all(data);
 }
