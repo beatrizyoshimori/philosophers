@@ -58,37 +58,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (num * sign);
 }
-
-// int	get_first_death(t_philo *philo)
-// {
-// 	int	death;
-
-// 	death = 0;
-// 	pthread_mutex_lock(&philo->data->getter_mutex);
-// 	death = philo->data->first_death;
-// 	pthread_mutex_unlock(&philo->data->getter_mutex);
-// 	return (death);
-// }
-
-// int	check_if_died(t_philo *philo)
-// {
-// 	if (get_first_death(philo))
-// 		return (1);
-// 	if (get_current_time(philo->data) - philo->time_since_last_meal
-// 		< philo->data->time_to_die)
-// 		return (0);
-// 	return (1);
-// }
-
-// void	philo_died(t_philo *philo)
-// {
-// 	pthread_mutex_lock(&philo->data->death_mutex);
-// 	if (!get_first_death(philo))
-// 	{
-// 		pthread_mutex_lock(&philo->data->printf_mutex);
-// 		printf("%ld %d died\n", get_current_time(philo->data), philo->id);
-// 		pthread_mutex_unlock(&philo->data->printf_mutex);
-// 	}
-// 	philo->data->first_death = 1;
-// 	pthread_mutex_unlock(&philo->data->death_mutex);
-// }
