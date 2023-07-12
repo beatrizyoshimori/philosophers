@@ -45,12 +45,13 @@ typedef struct s_philo
 	int		id;
 	int		num_meals;
 	time_t	time_since_last_meal;
-	sem_t	*forks;
-	sem_t	*left_fork;
-	sem_t	*right_fork;
 }	t_philo;
 
 void	*dinner(t_data *data);
+
+void	check_if_died(t_data *data);
+void	wait_for_fork(t_data *data);
+void	action_time(t_data *data, long time);
 
 void	free_all(t_data *data);
 void	print_state(t_philo *philo, char *state);
@@ -60,7 +61,7 @@ long	timestamp(void);
 long	timenow(long firststamp);
 
 void	init_semaphores(t_data *data);
-void	init_philos(t_data **data, t_philo **philo, sem_t **forks);
+void	init_philos(t_data **data, t_philo **philo);
 void	get_data(int argc, char *argv[], t_data **data);
 
 #endif
