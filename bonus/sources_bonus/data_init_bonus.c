@@ -18,9 +18,10 @@ void	init_semaphores(t_data *data)
 	sem_unlink("print_sem");
 	data->forks = sem_open("forks_sem", O_CREAT, 0777, data->num_philo);
 	data->print_sem = sem_open("print_sem", O_CREAT, 0777, 1);
+	// printf("Forks: %d\n", (data->forks));
 }
 
-void	init_philos(t_data **data, t_philo **philo)
+void	init_philos(t_data **data, t_philo **philo, sem_t **forks)
 {
 	int	i;
 
@@ -39,6 +40,9 @@ void	init_philos(t_data **data, t_philo **philo)
 		(*philo)[i].id = i + 1;
 		(*philo)[i].time_since_last_meal = 0;
 		(*philo)[i].num_meals = 0;
+		(*philo)[i].left_fork = *forks;
+		(*philo)[i].right_fork = *forks;
+		(*philo)[i].forks = *forks;
 		i++;
 	}
 	(*data)->philos = *philo;

@@ -41,10 +41,13 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	t_data			*data;
-	int				id;
-	int				num_meals;
-	time_t			time_since_last_meal;
+	t_data	*data;
+	int		id;
+	int		num_meals;
+	time_t	time_since_last_meal;
+	sem_t	*forks;
+	sem_t	*left_fork;
+	sem_t	*right_fork;
 }	t_philo;
 
 void	*dinner(t_data *data);
@@ -57,7 +60,7 @@ long	timestamp(void);
 long	timenow(long firststamp);
 
 void	init_semaphores(t_data *data);
-void	init_philos(t_data **data, t_philo **philo);
+void	init_philos(t_data **data, t_philo **philo, sem_t **forks);
 void	get_data(int argc, char *argv[], t_data **data);
 
 #endif

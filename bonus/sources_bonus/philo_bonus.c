@@ -70,7 +70,7 @@ int	main(int argc, char *argv[])
 
 	check_args(argc);
 	get_data(argc, argv, &data);
-	init_philos(&data, &philo);
+	init_philos(&data, &philo, &(data->forks));
 	init_semaphores(data);
 	start_processes(data);
 	free_all(data);
