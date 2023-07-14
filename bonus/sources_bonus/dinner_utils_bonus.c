@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dinner_utils_bonus.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 21:32:55 by byoshimo          #+#    #+#             */
+/*   Updated: 2023/07/13 21:32:57 by byoshimo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo_bonus.h"
 
 void	check_if_died(t_data *data)
@@ -21,8 +33,8 @@ void	wait_for_fork(t_data *data)
 {
 	while (*(long *)(data->forks) < 2)
 	{
-		usleep(10);
 		check_if_died(data);
+		usleep(10);
 	}
 }
 
