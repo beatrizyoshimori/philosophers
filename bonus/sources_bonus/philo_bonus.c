@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:02:41 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/10 18:34:37 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/13 21:35:32 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	check_args(int argc)
 	}
 }
 
-void	kill_child_processes(t_data *data)
+static void	kill_child_processes(t_data *data)
 {
 	int		i;
 	pid_t	pid;
@@ -37,7 +37,7 @@ void	kill_child_processes(t_data *data)
 	}
 }
 
-void	start_processes(t_data *data)
+static void	start_processes(t_data *data)
 {
 	int	i;
 	int	exit_status;
