@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:39:30 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/26 20:43:58 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:18:39 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	get_data(int argc, char *argv[], t_data **data)
 		printf("Failed to alloc data.\n");
 		exit(1);
 	}
-	(*data)->num_philo = ft_atoi(argv[1]);
-	(*data)->time_to_die = ft_atoi(argv[2]);
-	(*data)->time_to_eat = ft_atoi(argv[3]);
-	(*data)->time_to_sleep = ft_atoi(argv[4]);
+	(*data)->num_philo = ft_atol(argv[1]);
+	(*data)->time_to_die = ft_atol(argv[2]);
+	(*data)->time_to_eat = ft_atol(argv[3]);
+	(*data)->time_to_sleep = ft_atol(argv[4]);
 	if (argc == 6)
-		(*data)->num_times_to_eat = ft_atoi(argv[5]);
+		(*data)->num_times_to_eat = ft_atol(argv[5]);
 	else
 		(*data)->num_times_to_eat = -1;
 	(*data)->dinner_is_over = 0;

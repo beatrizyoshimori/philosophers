@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:05:36 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/26 20:44:14 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:18:09 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	print_state(t_philo *philo, char *state)
 	pthread_mutex_unlock(&philo->data->printf_mutex);
 }
 
-int	ft_atoi(const char *nptr)
+long int	ft_atol(const char *nptr)
 {
-	int	sign;
-	int	num;
+	long int	sign;
+	long int	num;
 
 	sign = 1;
 	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
