@@ -13,7 +13,8 @@ SOURCES			=		data_init.c \
 						philo_utils.c \
 						philo.c \
 						threads.c \
-						time_utils.c
+						time_utils.c \
+						validate_args.c
 
 OBJECT			=		$(addprefix $(OBJECTS_PATH)/,	$(SOURCES:.c=.o))
 

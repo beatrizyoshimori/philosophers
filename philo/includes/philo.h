@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:48:10 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/06/28 21:37:07 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:26:09 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,29 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 }	t_philo;
 
-int		get_meals(t_philo *philo);
-void	set_meals(t_philo *philo);
-int		get_last_meal(t_philo *philo);
-void	set_last_meal(t_philo *philo);
+int			get_meals(t_philo *philo);
+void		set_meals(t_philo *philo);
+int			get_last_meal(t_philo *philo);
+void		set_last_meal(t_philo *philo);
 
-void	*dinner(void *philo);
+void		*dinner(void *philo);
 
-int		dinner_is_over(t_philo *philo);
-void	print_state(t_philo *philo, char *state);
-int		ft_atoi(const char *nptr);
+int			dinner_is_over(t_philo *philo);
+void		print_state(t_philo *philo, char *state);
+long int	ft_atol(const char *nptr);
 
-long	timestamp(void);
-long	timenow(long firststamp);
+long		timestamp(void);
+long		timenow(long firststamp);
 
-void	*monitoring(void *ptr);
+void		*monitoring(void *ptr);
 
-void	create_thread(t_philo *philo);
-void	mutexes_init(t_data *data);
-void	destroy_mutexes(t_data *data);
+void		create_thread(t_philo *philo);
+void		mutexes_init(t_data *data);
+void		destroy_mutexes(t_data *data);
 
-void	init_philos(t_data *data, t_philo **philo);
-void	get_data(int argc, char *argv[], t_data **data);
+void		init_philos(t_data *data, t_philo **philo);
+void		get_data(int argc, char *argv[], t_data **data);
+
+void		check_args(int argc, char *argv[]);
 
 #endif
