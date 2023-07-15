@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 19:02:58 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/10 18:33:57 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:41:44 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,23 @@ typedef struct s_philo
 	time_t	time_since_last_meal;
 }	t_philo;
 
-void	*dinner(t_data *data);
+void		*dinner(t_data *data);
 
-void	check_if_died(t_data *data);
-void	wait_for_fork(t_data *data);
-void	action_time(t_data *data, long time);
+void		check_if_died(t_data *data);
+void		wait_for_fork(t_data *data);
+void		action_time(t_data *data, long time);
 
-void	free_all(t_data *data);
-void	print_state(t_philo *philo, char *state);
-int		ft_atoi(const char *nptr);
+void		free_all(t_data *data);
+void		print_state(t_philo *philo, char *state);
+long int	ft_atol(const char *nptr);
 
-long	timestamp(void);
-long	timenow(long firststamp);
+long		timestamp(void);
+long		timenow(long firststamp);
 
-void	init_semaphores(t_data *data);
-void	init_philos(t_data **data, t_philo **philo);
-void	get_data(int argc, char *argv[], t_data **data);
+void		init_semaphores(t_data *data);
+void		init_philos(t_data **data, t_philo **philo);
+void		get_data(int argc, char *argv[], t_data **data);
+
+void		check_args(int argc, char *argv[]);
 
 #endif

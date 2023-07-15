@@ -11,7 +11,8 @@ SOURCES			=		data_init_bonus.c \
 						dinner_utils_bonus.c \
 						philo_bonus.c \
 						philo_utils_bonus.c \
-						time_utils_bonus.c
+						time_utils_bonus.c \
+						validate_args_bonus.c
 
 OBJECT			=		$(addprefix $(OBJECTS_PATH)/,	$(SOURCES:.c=.o))
 
