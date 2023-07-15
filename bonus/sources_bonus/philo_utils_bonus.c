@@ -6,7 +6,7 @@
 /*   By: byoshimo <byoshimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:00:06 by byoshimo          #+#    #+#             */
-/*   Updated: 2023/07/10 17:51:26 by byoshimo         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:15:22 by byoshimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	print_state(t_philo *philo, char *state)
 	sem_post(philo->data->print_sem);
 }
 
-int	ft_atoi(const char *nptr)
+long int	ft_atol(const char *nptr)
 {
-	int	sign;
-	int	num;
+	long int	sign;
+	long int	num;
 
 	sign = 1;
 	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
